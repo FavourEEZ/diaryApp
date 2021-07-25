@@ -6,9 +6,10 @@ import { FontAwesome } from '@expo/vector-icons';
 export default function Header(){
 
   return(
-      <View style={styles.container}>
-        <Text style={styles.header}> My Diary </Text>
-      </View>
+    <View style={styles.container}>
+      <FontAwesome name='sort' size={20} style={styles.sortIcon} />
+      <Text style={styles.header}> My Diary </Text> 
+    </View>
   );
 };
 
@@ -16,16 +17,22 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
         borderBottomColor: '#22c94c',
-        borderBottomWidth: 10,
-        width: '100%',
-        height: 50,
-        alignContent: 'center',
+        borderBottomWidth: 2,
+        //width: '100%',
+        //height: 70,
+        //alignContent: 'center',
     },
     header: {
         fontStyle: 'italic',
         paddingTop: 20,
-        fontWeight: '600',
+        fontWeight: 'bold',
         color: '#b4b8b5',
-        fontSize: 15
-    }
+        fontSize: 20,
+        textAlign: 'center'
+        // alignContent: 'center',
+        // justifyContent: 'center'   
+     },
+     sortIcon: {
+        color: 'green'
+     }
 });
