@@ -4,12 +4,12 @@ import Header from './components/header';
 
 import { AntDesign } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
-        //TODO After that, style to make it look like a production app
         //TODO SDAdd navigations / screens
         //Home screen page displays only the title of entries. Clicking on those entries takes you to see the full thing.
         //Add a button next to each entry to delete it. 
         //Add date - Then sort each diary entry by date. 
         //Star each diary entry - making them always land my the top. To star: hoover on entry title and a star button should appear.
+        //Add a backend funcitonality
 export default function App() {
   const [dairy, setDairy] = useState([
     { dairyEntry: 'Mobile Application Update', key: '1'},
@@ -52,11 +52,17 @@ export default function App() {
         <FlatList
           data={dairy}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => removeEntry(item.key)}>
-              <Text style={styles.diaryEntry}>{item.dairyEntry}</Text>
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity onPress={() => console.log("Take user to another screen")}>
+                <Text style={styles.diaryEntry}>{item.dairyEntry}</Text>
+                <Button title='delete' onPress={() => removeEntry(item.key)}/>
+              </TouchableOpacity>
+            </View>
           )}
         />
+        <TouchableOpacity onPress={() => submitHandler(text) } style={styles.fab}>
+          <Text style={styles.fabIcon}>+</Text>
+        </TouchableOpacity>
         <View style={{flexDirection: 'row'}}>
           <TextInput
             style= {styles.userInput}
@@ -65,9 +71,6 @@ export default function App() {
             onChangeText={changeHandler}
             value={text}
           />
-
-          <Button color='coral' onPress={() => submitHandler(text)} title='Add diary'
-          style={{marginBottom: 50}}/>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -97,9 +100,25 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     paddingHorizontal: 30,
-    backgroundColor: '#add8e6',
+    backgroundColor: 'yellow',
     padding: 5,
     color: "coral",
     borderRadius: 10,
+  },
+  fab: {
+    position: 'absolute',
+    width: 56, 
+    height: 56, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    right: 20, 
+    bottom: 20, 
+    backgroundColor: '#03A9F4', 
+    borderRadius: 30, 
+    elevation: 8 
+  }, 
+  fabIcon: { 
+    fontSize: 40, 
+    color: 'white' 
   }
 });
