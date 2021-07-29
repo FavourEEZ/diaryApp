@@ -5,7 +5,8 @@ import Header from '../components/header';
 import { AntDesign } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function DiaryHome() {
+export default function DiaryHome({ navigation }) { //Destructuring 'navigation' from the props. props.navigation
+
   const [dairy, setDairy] = useState([
     { dairyEntry: 'Mobile Application Update', key: '1'},
     { dairyEntry: '10k Run Experience', key: '2'},
@@ -38,6 +39,10 @@ export default function DiaryHome() {
     })
   }
 
+  const pressNavigate = () => {
+    navigation.navigate('DiaryScreen') //Navigate to DiaryScreen in the screens object in HomeStack. screeens.DiaryScreen this js file is screens.Home
+  }
+
   return (
     <TouchableWithoutFeedback onPress={() =>{
       Keyboard.dismiss();
@@ -49,7 +54,7 @@ export default function DiaryHome() {
           data={dairy}
           renderItem={({ item }) => (
             <View>
-              <TouchableOpacity onPress={() => console.log("Take user to another screen")}>
+              <TouchableOpacity onPress={pressNavigate}>
                 <Text style={styles.diaryEntry}>{item.dairyEntry}</Text>
                 <Button title='delete' onPress={() => removeEntry(item.key)}/>
               </TouchableOpacity>
